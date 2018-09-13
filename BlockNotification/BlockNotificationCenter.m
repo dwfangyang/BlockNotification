@@ -129,7 +129,7 @@ static const char *BlockSig(id blockObj)
 {
     CHECKINPUTANDRET(observer, NO, @"BlockNotification:nil input");
     CHECKINPUTANDRET(notificationname, NO, @"BlockNotification:nil notificationname");
-    CHECKINPUTANDRET([callback isKindOfClass:NSClassFromString(@"NSBlock")], NO, @"BlockNotification:invalid callback");
+    CHECKINPUTANDRET([[BNLeakChecker sharedChecker] isBlock:callback], NO, @"BlockNotification:invalid callback");
     
     BOOL isvalidCallback = [self isValidBlock:callback forNotification:notificationname];
     CHECKINPUTANDRET(isvalidCallback, NO, @"BlockNotification:invalid blocktype for %@",notificationname);
@@ -137,6 +137,7 @@ static const char *BlockSig(id blockObj)
 #ifdef DEBUG
     if( [[BNLeakChecker sharedChecker] isBlock:callback retainObserver:observer] )
     {
+        NSLog(@"BlockNotification:callback for %@ retain the observer:%@",notificationname,observer);
         NSException* exception = [NSException exceptionWithName:@"BlockNotification" reason:[NSString stringWithFormat:@"callback retain observer:%@",notificationname] userInfo:nil];
         [exception raise];
     }
@@ -346,6 +347,7 @@ static const char *BlockSig(id blockObj)
 #ifdef DEBUG
     if( !isvalidCallback )
     {
+        NSLog(@"BlockNotification:callback invalid for %@",notificationname);
         NSException* exception = [NSException exceptionWithName:@"NotificationService" reason:[NSString stringWithFormat:@"%@ callback invalid",notificationname] userInfo:nil];
         [exception raise];
     }

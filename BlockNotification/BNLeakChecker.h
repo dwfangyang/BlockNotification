@@ -58,4 +58,5 @@ struct _block_byref_block;
 
 - (BOOL)isBlock:(id)block retainObserver:(id)observer;
 
+- (BOOL)isBlock:(id)block;
 @end

@@ -139,4 +139,30 @@ static NSIndexSet *_GetBlockStrongLayout(void *block)
     [results release];
     return NO;
 }
+
+- (BOOL)isBlock:(id)block;
+{
+    return FBObjectIsBlock((__bridge void*)block);
+}
+
+static Class _BlockClass() {
+    static dispatch_once_t onceToken;
+    static Class blockClass;
+    dispatch_once(&onceToken, ^{
+        void (^testBlock)(void) = [^{} copy];
+        blockClass = [testBlock class];
+        while(class_getSuperclass(blockClass) && class_getSuperclass(blockClass) != [NSObject class]) {
+            blockClass = class_getSuperclass(blockClass);
+        }
+        [testBlock release];
+    });
+    return blockClass;
+}
+
+BOOL FBObjectIsBlock(void *object) {
+    Class blockClass = _BlockClass();
+    
+    Class candidate = object_getClass((__bridge id)object);
+    return [candidate isSubclassOfClass:blockClass];
+}
 @end
