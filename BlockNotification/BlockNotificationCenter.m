@@ -9,7 +9,9 @@
 #import "BlockNotificationCenter.h"
 #import <objc/runtime.h>
 #import "BlockNotificationDefines.h"
+#ifdef DEBUG
 #import "BNLeakChecker.h"
+#endif
 
 NSString* const blockkey = @"BlockNotificationBlockKey";
 
