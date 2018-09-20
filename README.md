@@ -35,6 +35,6 @@ pod 'BlockNotification','0.0.10'
 #### 发送  
 `BN_Post(kNotificationSpecificSubject,@"physics",5);`
 
-#### 0.0.10版本之后，添加了更便捷的通知监听方法,即可以使用@selector(on+通知名)这个方法直接传入通知回调
+#### 更便捷的通知监听方法,即可以使用@selector(on+通知名)这个方法直接传入通知回调
 
 `[self onkNotificationSpecificSubject:^(NSString* subjectName,int gradepoint){   } queue:queue];     `
