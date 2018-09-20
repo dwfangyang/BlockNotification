@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "BlockNotification"
-  s.version      = "0.0.5"
+  s.version      = "0.0.11"
   s.summary      = "observe notification with blocks for iOS"
   s.description  = <<-DESC
 			observe notification with blocks for iOS
