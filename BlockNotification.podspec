@@ -13,6 +13,6 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/dwfangyang/BlockNotification.git", :tag => "#{s.version}" }
   
   s.requires_arc = true
-  s.source_files  = 'BlockNotification/*.{h,m,mm,cpp},{ 'BlockNotification/BNLeakChecker.{h,m}' => { requires_arc: false }}
+  s.source_files  = 'BlockNotification/ARC/*.{h,m,mm,cpp}',{ 'BlockNotification/Non_ARC/BNLeakChecker.{h,m}' => { requires_arc: false }}
 
 end

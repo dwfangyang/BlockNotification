@@ -67,15 +67,31 @@
 		C0382B0321197EB5004D3FA6 /* BlockNotification */ = {
 			isa = PBXGroup;
 			children = (
+				C04E1414215392A200616877 /* ARC */,
+				C04E14132153929400616877 /* Non_ARC */,
+			);
+			path = BlockNotification;
+			sourceTree = "<group>";
+		};
+		C04E14132153929400616877 /* Non_ARC */ = {
+			isa = PBXGroup;
+			children = (
+				C0382B0E21198AA9004D3FA6 /* BNLeakChecker.h */,
+				C0382B0F21198AA9004D3FA6 /* BNLeakChecker.m */,
+			);
+			path = Non_ARC;
+			sourceTree = "<group>";
+		};
+		C04E1414215392A200616877 /* ARC */ = {
+			isa = PBXGroup;
+			children = (
 				C0382B0421197EB5004D3FA6 /* BlockNotificationCenter.h */,
 				C0382B0521197EB5004D3FA6 /* BlockNotificationCenter.m */,
 				C0382B0D211984D9004D3FA6 /* BlockNotificationDefines.h */,
-				C0382B0E21198AA9004D3FA6 /* BNLeakChecker.h */,
-				C0382B0F21198AA9004D3FA6 /* BNLeakChecker.m */,
 				C0382B1121198E81004D3FA6 /* NSObject+BlockNotification.h */,
 				C0382B1221198E81004D3FA6 /* NSObject+BlockNotification.m */,
 			);
-			path = BlockNotification;
+			path = ARC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
