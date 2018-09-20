@@ -1,10 +1,14 @@
 Pod::Spec.new do |s|
 
   s.name         = "BlockNotification"
-  s.version      = "0.0.4"
+  s.version      = "0.0.5"
   s.summary      = "observe notification with blocks for iOS"
   s.description  = <<-DESC
 			observe notification with blocks for iOS
+			1. use block for callback
+			2. memory leak of callback checking
+			3. parameter type checking
+			4. auto removal of observing at observer's dealloc
                    DESC
   s.homepage     = "https://github.com/dwfangyang/BlockNotification"
   s.license      = { :type => 'MIT', :text => 'LICENSE'}
