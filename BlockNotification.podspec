@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "BlockNotification"
-  s.version      = "0.0.3"
+  s.version      = "0.0.4"
   s.summary      = "observe notification with blocks for iOS"
   s.description  = <<-DESC
 			observe notification with blocks for iOS
@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "7.0"
   s.source       = { :git => "https://github.com/dwfangyang/BlockNotification.git", :tag => "#{s.version}" }
   
-  s.requires_arc = true
-  s.source_files  = 'BlockNotification/ARC/*.{h,m,mm,cpp}',{'BlockNotification/Non_ARC/BNLeakChecker.{h,m}' => { requires_arc: false }}
+  s.requires_arc = true, :except => 'BlockNotification/Non_ARC/*.{h,m}'
+  s.source_files  = 'BlockNotification/ARC/*.{h,m,mm,cpp}','BlockNotification/Non_ARC/BNLeakChecker.{h,m}'
 
 end
