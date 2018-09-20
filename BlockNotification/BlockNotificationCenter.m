@@ -11,6 +11,8 @@
 #import "BlockNotificationDefines.h"
 #import "BNLeakChecker.h"
 
+NSString* const blockkey = @"BlockNotificationBlockKey";
+
 #pragma mark blocksignature fetch method
 static const char *BlockSig(id blockObj)
 {
@@ -254,11 +256,11 @@ static const char *BlockSig(id blockObj)
             BNAttachments* attachment = [self getAttachmentForNotification:notification forObserver:observer];
             if( attachment.queue )
             {
-                [arr addObject:@{@"block":callback,@"queue":attachment.queue}];
+                [arr addObject:@{blockkey:callback,@"queue":attachment.queue}];
             }
             else
             {
-                [arr addObject:@{@"block":callback}];
+                [arr addObject:@{blockkey:callback}];
             }
         }
         observer = keyEnumerator.nextObject;

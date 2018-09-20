@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "NSObject+BlockNotification.h"
 
+extern NSString* const blockkey;
 #define BN_Post(notification,...) for( NSDictionary* _BNInternal_info in [[BlockNotificationCenter sharedInstance] callbacks:@#notification] ) \
                                     {                                                                                                \
-                                        BNBlock_##notification blk = _BNInternal_info[@"block"];\
+                                        BNBlock_##notification blk = _BNInternal_info[blockkey];\
                                         if( !blk ) continue;\
                                         [[BlockNotificationCenter sharedInstance] callback:^{\
                                             blk(__VA_ARGS__);\
@@ -20,12 +21,24 @@
 
 #define VOID void
 #define BN_Dec(notification,...)       typedef void(^BNBlock_##notification)(__VA_ARGS__);\
-                                       extern NSString * const notification
+                                        @interface NSObject (notification)\
+                                        - (void)on##notification:(BNBlock_##notification)callback;\
+                                        - (void)on##notification:(BNBlock_##notification)callback queue:(dispatch_queue_t)queue;\
+                                        @end\
+                                        extern NSString * const notification
 
 #define BN_Def(notification,...)  @implementation BlockNotificationBlock (notification)                        \
                                     + (BNBlock_##notification)callbackBlock_##notification{                                    \
                                         return ^(__VA_ARGS__){};                            \
                                     }                                                       \
+                                    @end\
+                                    @implementation NSObject (notification)\
+                                    - (void)on##notification:(BNBlock_##notification)callback;{\
+                                        [self observeBlockNotification:notification callback:callback queue:nil];\
+                                    }\
+                                    - (void)on##notification:(BNBlock_##notification)callback queue:(dispatch_queue_t)queue;{\
+                                        [self observeBlockNotification:notification callback:callback queue:queue];\
+                                    }\
                                     @end\
                                     NSString * const notification = @#notification
 

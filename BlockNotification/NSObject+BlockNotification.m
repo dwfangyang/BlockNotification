@@ -21,4 +21,14 @@
     return [[BlockNotificationCenter sharedInstance] addObserver:self forNotification:notification callback:callback queue:queue];
 }
 
+- (BOOL)removeBlockNotification:(NSString*)notification;
+{
+    return [[BlockNotificationCenter sharedInstance] removeObserver:self forNotification:notification];
+}
+
+- (BOOL)removeBlockNotifications;
+{
+    return [[BlockNotificationCenter sharedInstance] removeObserver:self];
+}
+
 @end
