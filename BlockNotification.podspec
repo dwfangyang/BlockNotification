@@ -12,14 +12,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "7.0"
   s.source       = { :git => "https://github.com/dwfangyang/BlockNotification.git", :tag => "#{s.version}" }
   
-  s.subspec 'no-ARC' do |ss|
-  	ss.requires_arc = false
-	ss.source_files  = 'BlockNotification/BNLeakChecker.{h,m}'
-  end
-  s.subspec 'ARC' do |ss|
-  	ss.requires_arc = true
-	ss.source_files  = 'BlockNotification/*.{h,m,mm,cpp}'
-  	ss.exclude_files = 'BlockNotification/BNLeakChecker.{h,m}'
-  end
+  s.requires_arc = true
+  s.source_files  = 'BlockNotification/*.{h,m,mm,cpp},{ 'BlockNotification/BNLeakChecker.{h,m}' => { requires_arc: false }'
 
 end
